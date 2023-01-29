@@ -134,7 +134,7 @@ router.get("/videogamesDb", async (req, res) => {
       id: v.id,
       name: v.name,
       background_image: v.background_image,
-      genres: v.Genres.map((genero) => genero.name),
+      genres: v.Genres?.map((genero) => genero.name),
     }));
     res.status(201).send(videogames);
   } catch (error) {
