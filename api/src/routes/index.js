@@ -34,23 +34,7 @@ router.get("/videogames", async (req, res) => {
   }
 });
 
-router.get("/videogamesDb", async (req, res) => {
-  try {
-    const call = await Videogame.findAll({ include: Genre });
-    const videogamesJSON = call.map((v) => v.toJSON());
-    const videogames = videogamesJSON.map((v) => ({
-      id: v.id,
-      name: v.name,
-      background_image: v.background_image,
-      genres: v.Genres.map((genero) => genero.name),
-    }));
-    res.status(201).send(videogames);
-  } catch (error) {
-    res.status(400).send(error.message);
-  }
-  });
-
-  router.get("/videogames/:id", async (req, res) => {
+router.get("/videogames/:id", async (req, res) => {
   try {
     const id = req.params.id;
     if (/^([a-z]|[A-Z]|[0-9]|[-]){36}$/.test(id)) {
@@ -141,5 +125,21 @@ router.get("/videogames2", async (req, res) => {
     res.status(400).send(error.message);
   }
 });
+
+router.get("/videogamesDb", async (req, res) => {
+  try {
+    const call = await Videogame.findAll({ include: Genre });
+    const videogamesJSON = call.map((v) => v.toJSON());
+    const videogames = videogamesJSON.map((v) => ({
+      id: v.id,
+      name: v.name,
+      background_image: v.background_image,
+      genres: v.Genres.map((genero) => genero.name),
+    }));
+    res.status(201).send(videogames);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }});
+
 
 module.exports = router;

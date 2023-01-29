@@ -52,6 +52,8 @@ const findVideoGames = async () => {
       platforms: juego.platforms.map((plataforma) => plataforma.platform.name),
     })
   );
+  // console.log("$/&1123321");
+  // console.log(array);
   return array;
 };
 
