@@ -15,9 +15,9 @@ const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(15);
 
-  const lastPostIndex = currentPage * postsPerPage;
-  const firstPostIndex = lastPostIndex - postsPerPage;
-  const currentPosts = videogames.slice(firstPostIndex, lastPostIndex);
+  const indexOfLastItem = currentPage * postsPerPage;
+  const indexOfFirstItem = indexOfLastItem - postsPerPage;
+  const currentItems = videogames.slice(indexOfFirstItem, indexOfLastItem);
   console.log(videogames)
   console.log(genres);
   const dispatch = useDispatch();
@@ -35,12 +35,13 @@ const Home = () => {
       dispatch(getAllVideogames());
   }, [dispatch]);
   
+  
   return (  
     <div className={styles.body}>
       <div className={styles.div}>
         <div className={styles.div2}>
           <h3 className={styles.h3}>Videogames:</h3>
-          <Games videogames={currentPosts} />
+          {/* <Games videogames={currentItems} /> */}
           <Pagination
             totalItems={videogames.length}
             ShownItemsPerPage={setPostsPerPage}
