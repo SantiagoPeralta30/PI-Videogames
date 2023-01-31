@@ -12,7 +12,7 @@ const Filter = (props) => {
     <li
       onClick={async () => {
         props.setCurrentPage(1);
-        await dispatch(returnBackup());
+        dispatch(returnBackup());
       }}
     >
       {props.name}

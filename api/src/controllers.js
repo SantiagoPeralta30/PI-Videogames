@@ -10,15 +10,15 @@ const { Videogame, Genre } = require("./db");
 
 const findVideoGames = async () => {
   const call = await axios
-    .get(`https://api.rawg.io/api/games?key=${API_KEY}&page_size=100`)
+    .get(`https://api.rawg.io/api/games?key=${API_KEY}&page_size=40`)
     .then((response) => response.data)
     .then((response) => response.results);
   const call2 = await axios
-    .get(`https://api.rawg.io/api/games?key=${API_KEY}&page=2&page_size=100`)
+    .get(`https://api.rawg.io/api/games?key=${API_KEY}&page=2&page_size=40`)
     .then((response) => response.data)
     .then((response) => response.results);
   const call3 = await axios
-    .get(`https://api.rawg.io/api/games?key=${API_KEY}&page=3&page_size=100`)
+    .get(`https://api.rawg.io/api/games?key=${API_KEY}&page=3&page_size=40`)
     .then((response) => response.data)
     .then((response) => response.results);
   let array = [];

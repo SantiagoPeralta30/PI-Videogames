@@ -1,7 +1,8 @@
 import React from "react";
 import mail from "../../src/images/mail.png";
 import styles from "../styles/About.module.css";
-
+import profileImge from "../images/FotoDePerfil.jpeg";
+import { Link } from "react-router-dom";
 
 const About = () =>{
 
@@ -12,6 +13,9 @@ const About = () =>{
 
     return (
         <div className={styles.ContenedorPrincipal}>
+            <Link to="/">
+                <button className={styles.back}></button>
+            </Link>
             <div className={styles.header}>
                 <h1>About the project</h1>
             </div>
@@ -45,6 +49,7 @@ const About = () =>{
                     PostgresSQL and Sequelize.
                 </p>
                 </div>
+                <img className={styles.profileImge} src={profileImge} alt="" />
             </div>
             <div className={styles.header}>
                 <h1>CONTACT</h1>
@@ -59,7 +64,7 @@ const About = () =>{
                         <img src="https://www.freeiconspng.com/thumbs/linkedin-logo-png/images-linkedin-logo-png-14.png" alt="" />
                     </a>
                     <a target="_blank" href="https://github.com/SantiagoPeralta30">
-                        <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="" />
+                        <img src="https://www.freeiconspng.com/thumbs/github-icon/github-icon-1.png" alt="" />
                     </a>
                 </div>
                 

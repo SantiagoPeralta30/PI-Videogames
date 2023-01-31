@@ -6,7 +6,7 @@ import Games from "./Games";
 const Pagination = ({ totalItems, shownCurrentPage, page }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(15);
-  const [items, setItems] = useState([]); //estado para los elementos de la base de datos
+
 
   // useEffect(() => {
   //   //cargar los elementos de la base de datos
@@ -18,6 +18,7 @@ const Pagination = ({ totalItems, shownCurrentPage, page }) => {
   // }, []);
 
   let videogames = useSelector((state) => state.videogames); 
+  let videogamesF = useSelector((state) => state.filterbygenre); 
 
   // setItems(videogames);
 
@@ -31,7 +32,12 @@ const Pagination = ({ totalItems, shownCurrentPage, page }) => {
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = videogames.slice(indexOfFirstItem, indexOfLastItem);
+  let currentItems = ""
+  if(videogamesF?.length > 0) {
+    currentItems = videogamesF.slice(indexOfFirstItem, indexOfLastItem);
+  } else {
+    currentItems = videogames.slice(indexOfFirstItem, indexOfLastItem);
+   } 
   console.log(currentItems);
   return (
     <div>

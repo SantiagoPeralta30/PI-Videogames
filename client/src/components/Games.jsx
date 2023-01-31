@@ -15,8 +15,8 @@ const Games = (props) => {
               genres={juego.genres}
               img={juego.background_image}
               rating={juego.rating}
-              key={juego.id}
               id={juego.id}
+              key={juego.id}
             />
           );
         })

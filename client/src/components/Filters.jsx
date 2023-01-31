@@ -81,7 +81,7 @@ const Filters = (props) => {
               onClick={async () => {
                 props.setCurrentPage(1);
                 setCurrentFilters({ ...currentFilters, genres: genero.name });
-                await dispatch(filterByGenre(genero.name));
+                dispatch(filterByGenre(genero.name));
               }}
             >
               {genero.name}

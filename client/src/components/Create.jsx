@@ -14,14 +14,14 @@ const Create = () => {
 
     const [form, setForm] = useState({
         name: "",
-        backgroundimg: "",
+        background_image: "",
         released: "",
         description: "",
         rating: "",
-        genre: [],
+        genres: [],
         plataforms: [],
     })
-
+    console.log(form);
     const [error, setError] = useState({});
     const [created, setCreated] = useState(false);
     const validator = (property, value) => {
@@ -144,10 +144,17 @@ const Create = () => {
             if (form[property]?.includes(value))  {
             setForm({ ...form });
             } else {
-            setForm({ ...form, [property]:  [value] });
+                if (form[property]?.length === undefined) {
+                    setForm({ ...form, [property]: [value] });
+                } else {
+                    setForm({ ...form, [property]:  [ ...form[property], [value]] });
+                }
             }
         } else setForm({ ...form, [property]: value });
         }
+        if (!value) {
+            setForm({ ...form, [property]: "" });
+          }
     };
 
     const handlerSubmit = async (e) => {
@@ -164,7 +171,7 @@ const Create = () => {
         } else {
         let nuevoGenres = [];
         for (let objeto of genres) {
-            if (form.genres.includes(objeto.name)) {
+            if (form.genres?.includes(objeto.name)) {
             nuevoGenres.push(objeto.id);
             }
         }
@@ -180,9 +187,11 @@ const Create = () => {
         await dispatch(postVideogame({ ...form, genres: nuevoGenres }));
         setCreated(true);
         }
+        setError({});
     };
 
     return (
+        <body className={styles.body}>
         <div className={styles.div}>
         <Link to="/home">
             <button className={styles.back}></button>
@@ -235,12 +244,12 @@ const Create = () => {
             <input
                 name="genres"
                 type="text"
-                value={form.genre?.join(", ")}
+                value={form.genres?.join(", ")}
             />
             <select name="genres" onChange={(e) => handlerChange(e)}>
                 <option value="">Select genres</option>
                 {genres &&
-                genres.map((genero) => {
+                genres.map((genero, id) => {
                     return <option value={genero.name}>{genero.name}</option>;
                 })}
             </select>
@@ -271,7 +280,7 @@ const Create = () => {
             <input
                 name="platforms"
                 type="text"
-                value={form.plataforms?.join(", ")}
+                value={form.platforms?.join(", ")}
             />
             <select name="platforms" onChange={(e) => handlerChange(e)}>
                 <option value="">Select platform</option>
@@ -333,6 +342,7 @@ const Create = () => {
             </button>
         </form>
         </div>
+        </body>
     );
 };
 

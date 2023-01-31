@@ -13,7 +13,7 @@ const Card = (props) => {
             <div className={styles.divRating}>
                 <img
                     className={styles.icon}
-                    src="https://www.pngkey.com/maxpic/u2e6t4a9i1q8o0q8/"
+                    src="..\src\images\Rating.png"
                     alt=""
                     />
                 <p className={styles.ratingValue}>{props.rating}</p>
@@ -27,7 +27,7 @@ const Card = (props) => {
                     className={activo ? styles.imgHover : styles.img}
                 />
             </Link>
-            <p className={styles.genre}>{props.genres.join(", ")}</p>
+            <p className={styles.genre}>{props.genres?.join(", ")}</p>
             <Link className={styles.Link} to={`/videogames/${props.id}`}>
                 <p className={styles.name}>{props.name}</p>
             </Link>

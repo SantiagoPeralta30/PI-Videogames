@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector} from "react-redux";
 import { getVideoGameById, resetVideogame } from "../redux/actions";
 import { Link } from "react-router-dom";
+import styles from "../styles/Detail.module.css";
 
 const Detail = (props) => {
     const dispatch = useDispatch();
@@ -15,31 +16,32 @@ const Detail = (props) => {
       const videogame = useSelector((state) => state.videogame);
     
       return (
-        <div>
-          <div>
+        <div className={styles.body}>
+          <div className={styles.div}>
             {Object.keys(videogame).length > 0 ? (
               <>
-                <div>
+                <div className={styles.contenedor}>
                   <Link to="/home">
                     <button
+                      className={styles.back}
                       onClick={() => dispatch(resetVideogame())}
                     ></button>
                   </Link>
-                  <img src={videogame.background_image} alt=""/>
-                  <div >
+                  <img className={styles.img} src={videogame.background_image} alt=""/>
+                  <div className={styles.specs}>
                     <h3>{videogame.name}</h3>
     
-                    <span>{videogame.released}</span>
+                    <span className={styles.rocket}>{videogame.released}</span>
     
-                    <span>
-                      {videogame.platforms.join(", ")}
+                    <span className={styles.platforms}>
+                      {videogame.platforms?.join(", ")}
                     </span>
-                    <span>
-                      {videogame.genres.join(", ")}
+                    <span className={styles.list}>
+                      {videogame.genres?.join(", ")}
                     </span>
                   </div>
                 </div>
-                <p>{videogame.description}</p>
+                <p className={styles.description}>{videogame.description}</p>
               </>
             ) : (
               <h1>Loading...</h1>

@@ -68,6 +68,8 @@ import {
     videogame: {},
     genres: [],
     platforms: [],
+    filterbygenre: [],
+    video1: [],
   };
 
 
@@ -81,24 +83,32 @@ import {
           videogamesBackup: action.payload,
           videogamesPermantes: action.payload,
           fillterbygames:action.payload,
-          filterbygenre: action.payload,
+          // filterbygenre: action.payload,
+          video1: action.payload,
         };
       case GET_ALL_GENRES:
         return { ...state, genres: action.payload };
       case FILTER_BY_GENRE:  
+      // return {
+      //     ...state,
+      //     videogames: state.videogamesPermantes.filter((juego) =>
+      //       juego.genres.includes(action.payload)
+      //     ),
+      //     filterbygenre: state.videogamesPermantes.filter((juego) => 
+      //     juego.genres.includes(action.payload)
+      //     ),
+      //   };
       return {
-          ...state,
-          videogames: state.videogamesPermantes.filter((juego) =>
-            juego.genres.includes(action.payload)
-          ),
-          filterbygenre: state.videogamesPermantes.filter((juego) => 
+        ...state,
+        videogames: state.videogames.filter((juego) =>
           juego.genres.includes(action.payload)
-          ),
-        };
+        ),
+      };
       case RETURN_BACKUP:
         return {
           ...state,
-          videogames: state.videogamesBackup,
+          videogames: state.video1,
+          // filterbygenre: [],
         };
       case GET_VIDEOGAMES:
         return {

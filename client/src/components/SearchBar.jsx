@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { getVideoGameByName } from "../redux/actions";
 import { useState } from "react";
+import styles from "../styles/SearchBar.module.css";
 
 const Searchbar = (props) => {
   const dispatch = useDispatch();
@@ -18,12 +19,13 @@ const Searchbar = (props) => {
   return (
     <form onSubmit={handleSubmit}>
       <input
+        className={styles.input}
         placeholder="Search by name..."
         type="text"
         onChange={handleChange}
         value={name}
       />
-      <input type="submit" />
+      <input className={styles.invisible} type="submit" />
     </form>
   );
 };

@@ -35,7 +35,14 @@ const Home = () => {
       dispatch(getAllVideogames());
   }, [dispatch]);
   
-  
+  const handleNextPage = () => {
+    setCurrentPage(currentPage + 1)
+  }
+
+  const handlePreviousPage = () => {
+    setCurrentPage(currentPage - 1)
+  }
+
   return (  
     <div className={styles.body}>
       <div className={styles.div}>
@@ -47,11 +54,16 @@ const Home = () => {
             ShownItemsPerPage={setPostsPerPage}
             shownCurrentPage={setCurrentPage}
             page={currentPage}
+            onClickNext={handleNextPage}
+            onClickPrevious={handlePreviousPage}
           />
         </div>
         <div className={styles.sidebar}>
           <Link to="/create">
             <button className={styles.create}>Create</button>
+          </Link>
+          <Link to="/about">
+            <button className={styles.create}>About</button>
           </Link>
           <Searchbar setCurrentPage={setCurrentPage} />
           {matches && (
