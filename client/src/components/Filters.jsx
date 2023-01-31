@@ -100,7 +100,9 @@ const Filters = (props) => {
         >
           Api
         </button>
-        <button onClick={async () => {
+        <button 
+            className={styles.button}
+            onClick={async () => {
             props.setCurrentPage(1);
             setCurrentFilters({ ...currentFilters, apiOrDb: "Database" });
           }}

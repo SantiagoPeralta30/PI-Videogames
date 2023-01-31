@@ -45,17 +45,21 @@
   .rightArrow {
     width: 70px;
     height: 40px;
-    background-image: url("https://www.pngkit.com/png/full/497-4978152_arrow-right-black-background.png");
+    background-image: url("https://www.citypng.com/public/uploads/preview/hd-neon-arrow-blue-right-icon-png-31624561692iilpmkdnvd.png");
     background-size: 70px 40px;
     background-repeat: no-repeat;
     cursor: pointer;
+    background-color: black;
   }
   .leftArrow {
     width: 70px;
     height: 40px;
-    background-image: url("https://www.pngkit.com/png/full/497-4978152_arrow-right-black-background.png");
+    background-image: url("https://www.citypng.com/public/uploads/preview/hd-neon-arrow-blue-right-icon-png-31624561692iilpmkdnvd.png");
     background-size: 70px 40px;
     background-repeat: no-repeat;
     cursor: pointer;
     transform: scaleX(-1);
+    background-color: black;
   }
+
+  

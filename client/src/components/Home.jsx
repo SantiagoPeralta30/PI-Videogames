@@ -59,11 +59,11 @@ const Home = () => {
           />
         </div>
         <div className={styles.sidebar}>
+          <Link to="/about">
+            <button className={styles.about}>About</button>
+          </Link>
           <Link to="/create">
             <button className={styles.create}>Create</button>
-          </Link>
-          <Link to="/about">
-            <button className={styles.create}>About</button>
           </Link>
           <Searchbar setCurrentPage={setCurrentPage} />
           {matches && (

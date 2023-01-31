@@ -57,6 +57,28 @@
     font-weight: 700;
     cursor: pointer;
   }
+
+  .about{
+    background-color: white;
+    border: none;
+    border-radius: 25px;
+    height: 40px;
+    width: 90px;
+    font-weight: 600;
+    transition-duration: 100ms;
+    margin-bottom: 20px;
+  }
+  .about:hover {
+    transition-duration: 200ms;
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    border-radius: 25px;
+    height: 40px;
+    width: 90px;
+    font-weight: 700;
+    cursor: pointer;
+  }
   @media (max-width: 800px) {
     .div {
       flex-direction: column-reverse;
