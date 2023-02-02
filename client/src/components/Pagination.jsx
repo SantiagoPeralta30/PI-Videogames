@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import styles from "../styles/Pagination.module.css";
 import Games from "./Games";
@@ -7,20 +7,8 @@ const Pagination = ({ totalItems, shownCurrentPage, page }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(15);
 
-
-  // useEffect(() => {
-  //   //cargar los elementos de la base de datos
-  //   fetch('http://localhost:3001/videogames')
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       setItems(data);
-  //     });
-  // }, []);
-
   let videogames = useSelector((state) => state.videogames); 
   let videogamesF = useSelector((state) => state.filterbygenre); 
-
-  // setItems(videogames);
 
   function handleNextPage() {
     setCurrentPage(currentPage + 1);
@@ -41,13 +29,7 @@ const Pagination = ({ totalItems, shownCurrentPage, page }) => {
   console.log(currentItems);
   return (
     <div>
-      {/* {currentItems.map((item) => (
-        <div key={item.id}>
-          <p>{item.name}</p>
-          <p>{item.description}</p>
-          {/* <img src={item.background_image} alt="" /> */}
-        {/* </div>
-      ))} */} <Games videogames={currentItems} />
+      <Games videogames={currentItems} />
       <button
         onClick={handlePreviousPage}
         disabled={currentPage === 1}

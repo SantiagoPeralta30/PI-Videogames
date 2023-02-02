@@ -6,7 +6,7 @@ const {
     findVideoGames,
     findVideoGamesByName,
     loadGenres,
-} = require("../controllers.js");
+} = require("../controllers/controllers");
 const { Videogame, Genre } = require("../db");
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -86,21 +86,30 @@ router.get("/genres", async (req, res) => {
 });
 
 router.post("/videogames", async (req, res) => {
+  await loadGenres()
   try {
     const { name, genres, description } = req.body;
     if (!name || !description) {
       return res.status(400).send("Faltan parametros obligatorios");
     }
     const videogame = await Videogame.create(req.body);
-    console.log(videogame);
-    const dbGenres = await Genre.findAll({where: {name: genres}})
-    await videogame.addGenres(dbGenres);
-    console.log(dbGenres);
+    if(genres.length > 0) {
+    const dbGenres = await Genre.findAll({where: {name: genres[0]}})
+    await videogame.addGenre(dbGenres);
+    }
+    if(genres.length > 1) {
+    const dbGenres = await Genre.findAll({where: {name: genres[1]}})
+    await videogame.addGenre(dbGenres);
+    }
+    if(genres.length > 2) {
+    const dbGenres = await Genre.findAll({where: {name: genres[2]}})
+    await videogame.addGenre(dbGenres);
+    }
     res.status(201).send(videogame);
   } catch (error) {
     res.status(400).send(error.message);
   }
-});
+}); 
 
 
 
@@ -134,7 +143,7 @@ router.get("/videogamesDb", async (req, res) => {
       id: v.id,
       name: v.name,
       background_image: v.background_image,
-      genres: v.Genres?.map((genero) => genero.name),
+      genres: v.genres?.map((genero) => genero.name),
     }));
     res.status(201).send(videogames);
   } catch (error) {

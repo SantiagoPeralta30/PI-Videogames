@@ -29,10 +29,10 @@
     font-size: large;
     font-weight: 500;
 }
-.body h4{
+.body h3{
     color: rgb(183, 183, 183);
     margin: 0px 5px;
-    font-size: small;
+    font-size: large;
 }
 .body p{
     color: wheat;
@@ -46,7 +46,7 @@
     display: flex;
     justify-content: space-around;
     width: 100%;
-    opacity: 80%;
+    opacity: 90%;
 }
 .bodyAndImgameContainer img{
     width: 200px;

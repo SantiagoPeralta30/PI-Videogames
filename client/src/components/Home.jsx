@@ -1,4 +1,3 @@
-import Games from "./Games";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
@@ -48,7 +47,6 @@ const Home = () => {
       <div className={styles.div}>
         <div className={styles.div2}>
           <h3 className={styles.h3}>Videogames:</h3>
-          {/* <Games videogames={currentItems} /> */}
           <Pagination
             totalItems={videogames.length}
             ShownItemsPerPage={setPostsPerPage}

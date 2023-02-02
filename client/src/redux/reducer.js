@@ -100,8 +100,8 @@ import {
       //   };
       return {
         ...state,
-        videogames: state.videogames.filter((juego) =>
-          juego.genres.includes(action.payload)
+        videogames: state.videogames?.filter((juego) =>
+          juego.genres?.includes(action.payload)
         ),
       };
       case RETURN_BACKUP:

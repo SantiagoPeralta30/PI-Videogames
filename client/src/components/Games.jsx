@@ -1,14 +1,11 @@
 import Card from "./Card";
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
-import { getAllVideogames } from "../redux/actions";
 import styles from "../styles/Games.module.css";
 
 const Games = (props) => {
   return (
     <div className={styles.body}>
       {!props.videogames.error && props.videogames.length ? (
-        props.videogames.map((juego) => {
+        props.videogames?.map((juego) => {
           return (
             <Card
               name={juego.name}

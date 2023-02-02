@@ -14,7 +14,11 @@ const Detail = (props) => {
       }, [dispatch, id]);
     
       const videogame = useSelector((state) => state.videogame);
-    
+      console.log(videogame)
+      let genres1 = []
+      if(videogame.dbCreated){
+        videogame.genres?.map((s) => genres1.push(s.name))
+      }
       return (
         <div className={styles.body}>
           <div className={styles.div}>
@@ -37,7 +41,7 @@ const Detail = (props) => {
                       {videogame.platforms?.join(", ")}
                     </span>
                     <span className={styles.list}>
-                      {videogame.genres?.join(", ")}
+                      {videogame.dbCreated ? genres1?.join(", "): videogame.genres?.join(", ")}
                     </span>
                   </div>
                 </div>

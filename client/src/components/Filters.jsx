@@ -8,8 +8,7 @@ import {
     ratingDescendent,
     ratingAscendent,
   } from "../redux/actions";
-import Filter from "./Filter";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import styles from "../styles/Filters.module.css";
 

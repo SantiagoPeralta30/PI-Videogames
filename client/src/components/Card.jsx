@@ -1,13 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import styles from "../styles/Card.module.css"
 
 const Card = (props) => {
     const [activo, setActivo] = useState(false);
-    const imgDefault = "https://imgbin.com/png/kYWnVadK/question-mark-png";
-    const dispatch = useDispatch();
-    console.log(props);
     return (
         <div className={styles.div}>
             <div className={styles.divRating}>
@@ -20,7 +16,7 @@ const Card = (props) => {
             </div>
             <Link to={`/videogames/${props.id}`}>
                 <img
-                    src={props.img ? props.img : imgDefault}
+                    src={props.img}
                     onMouseEnter={() => setActivo((current) => !current)}
                     onMouseLeave={() => setActivo((current) => !current)}
                     alt=""

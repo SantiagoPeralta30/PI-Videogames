@@ -28,10 +28,21 @@ module.exports = (sequelize) => {
       defaultValue: DataTypes.NOW,
       allowNull: true,
     },
-    plataforms: {
+    platforms: {
       type: DataTypes.ARRAY(DataTypes.STRING),
+    },
+    background_image:{
+      type:DataTypes.STRING,
+      allowNull:true,
+      defaultValue:'https://icon2.cleanpng.com/20180131/bqq/kisspng-video-game-game-controller-joystick-online-game-vector-gamepad-5a7166f1860311.7443905015173813615489.jpg',
+    },
+    dbCreated: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
     }
   },
+  
   {
     timestamps: false,
   }

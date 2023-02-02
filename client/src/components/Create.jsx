@@ -1,27 +1,27 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { postVideogame } from "../redux/actions";
+import { postVideogame, getAllGenres } from "../redux/actions";
 import { Link } from "react-router-dom";
 import styles from "../styles/Create.module.css";
 
 
 const Create = () => {
     const dispatch = useDispatch();
-
+    
     const { genres, platforms } = useSelector((state) => state);
 
     const [form, setForm] = useState({
         name: "",
-        background_image: "",
         released: "",
         description: "",
         rating: "",
         genres: [],
-        plataforms: [],
+        platforms: [],
     })
     console.log(form);
+
     const [error, setError] = useState({});
     const [created, setCreated] = useState(false);
     const validator = (property, value) => {
@@ -38,18 +38,6 @@ const Create = () => {
             setError({ ...error });
             }
             break;
-        case "background_image":
-            if (!/^(ftp|http|https):\/\/[^ "]+$/.test(value)) {
-            setError({
-                ...error,
-                [property]: "La imagen debe ser una url valida.",
-            });
-            } else {
-            delete error[property];
-            setError({ ...error });
-            }
-            break;
-
         case "released":
             if (new Date().getTime() < new Date(value).getTime()) {
             setError({
@@ -131,6 +119,10 @@ const Create = () => {
         }
     };
 
+    useEffect(() => {
+        dispatch(getAllGenres())
+    }, [dispatch])
+
     const handlerChange = (e) => {
         e.preventDefault();
         setCreated();
@@ -169,23 +161,22 @@ const Create = () => {
         if (Object.keys(error).length) {
         console.log("Hay errores");
         } else {
-        let nuevoGenres = [];
-        for (let objeto of genres) {
-            if (form.genres?.includes(objeto.name)) {
-            nuevoGenres.push(objeto.id);
-            }
-        }
+        // let nuevoGenres = [];
+        // for (let objeto of genres) {
+        //     if (form.genres?.includes(objeto.name)) {
+        //     nuevoGenres.push(objeto.id);
+        //     }
+        // }
+        await dispatch(postVideogame({ ...form }));
+        setCreated(true);
         setForm({
             name: "",
-            background_image: "",
             released: "",
             rating: "",
             description: "",
             genres: [],
             platforms: [],
         });
-        await dispatch(postVideogame({ ...form, genres: nuevoGenres }));
-        setCreated(true);
         }
         setError({});
     };
@@ -204,15 +195,6 @@ const Create = () => {
                 name="name"
                 type="text"
                 value={form.name}
-                onChange={handlerChange}
-            />
-            </div>
-            <div>
-            <label for="background_image">Image: </label>
-            <input
-                type="text"
-                name="background_image"
-                value={form.background_image}
                 onChange={handlerChange}
             />
             </div>
@@ -330,7 +312,6 @@ const Create = () => {
             type="submit"
             disabled={
                 !form.name ||
-                !form.background_image ||
                 !form.released ||
                 !form.rating ||
                 !form.genres?.length ||
